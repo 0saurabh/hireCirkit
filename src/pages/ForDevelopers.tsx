@@ -98,55 +98,66 @@ const ForDevelopers = () => {
         </div>
       </section>
 
-      {/* What You Get */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-primary mb-4">What You Get</h2>
-            <p className="text-gray-600">We're committed to your success and career growth.</p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {benefits.map((benefit, index) => (
-              <Card key={index} className="text-center hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="flex justify-center mb-4">
-                    {benefit.icon}
-                  </div>
-                  <CardTitle className="text-primary">{benefit.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">{benefit.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+     {/* What You Get */}
+<section className="py-16 bg-white">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="text-center mb-12">
+      <h2 className="text-3xl font-bold text-primary mb-4">What You Get</h2>
+      <p className="text-gray-600">We're committed to your success and career growth.</p>
+    </div>
 
-      {/* Screening Process */}
-      <section className="py-16 bg-muted">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-primary mb-4">Screening Process (For Developers)</h2>
-            <p className="text-gray-600">A transparent and fair evaluation process to showcase your skills.</p>
-          </div>
-          
-          <div className="grid md:grid-cols-4 gap-6">
-            {process.map((step, index) => (
-              <Card key={index} className="text-center">
-                <CardContent className="p-6">
-                  <div className="w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center font-bold text-lg mx-auto mb-4">
-                    {index + 1}
-                  </div>
-                  <h3 className="text-lg font-semibold text-primary mb-3">{step.step}</h3>
-                  <p className="text-gray-600 text-sm">{step.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+    <div className="grid md:grid-cols-3 gap-8">
+      {benefits.map((benefit, index) => (
+        <Card
+          key={index}
+          className="relative group overflow-hidden rounded-xl bg-white text-center transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl"
+        >
+          {/* Radium glowing border effect */}
+          <div className="absolute inset-0 rounded-xl border border-transparent group-hover:border-accent transition-all duration-500 before:content-[''] before:absolute before:inset-0 before:rounded-xl before:border-[2px] before:border-accent before:animate-pulse before:opacity-20"></div>
+
+          <CardHeader className="relative z-10">
+            <div className="flex justify-center mb-4">{benefit.icon}</div>
+            <CardTitle className="text-primary">{benefit.title}</CardTitle>
+          </CardHeader>
+
+          <CardContent className="relative z-10">
+            <p className="text-gray-600">{benefit.description}</p>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>
+
+{/* Screening Process */}
+<section className="py-16 bg-muted">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="text-center mb-12">
+      <h2 className="text-3xl font-bold text-primary mb-4">Screening Process (For Developers)</h2>
+      <p className="text-gray-600">A transparent and fair evaluation process to showcase your skills.</p>
+    </div>
+
+    <div className="grid md:grid-cols-4 gap-6">
+      {process.map((step, index) => (
+        <Card
+          key={index}
+          className="relative group overflow-hidden rounded-xl text-center transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl bg-white"
+        >
+          {/* Radium border effect */}
+          <div className="absolute inset-0 rounded-xl border border-transparent group-hover:border-accent transition-all duration-500 before:content-[''] before:absolute before:inset-0 before:rounded-xl before:border-[2px] before:border-accent before:animate-pulse before:opacity-20"></div>
+
+          <CardContent className="p-6 relative z-10">
+            <div className="w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center font-bold text-lg mx-auto mb-4 transition-transform duration-300 group-hover:scale-110">
+              {index + 1}
+            </div>
+            <h3 className="text-lg font-semibold text-primary mb-3">{step.step}</h3>
+            <p className="text-gray-600 text-sm">{step.description}</p>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* What to Expect */}
       <section className="py-16 bg-white">

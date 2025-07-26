@@ -328,7 +328,6 @@ const HowItWorks = () => {
               <Link to="/about">
                 <Button 
                   size="lg" 
-                  variant="outline" 
                   className="group border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-xl backdrop-blur-sm"
                 >
                   Learn More About Us

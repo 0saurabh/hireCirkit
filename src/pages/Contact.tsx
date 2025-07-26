@@ -31,7 +31,7 @@ const Contact = () => {
   useEffect(() => {
     // Check if user came from a specific page via navigation state
     const fromPage = location.state?.from;
-    
+
     if (fromPage) {
       console.log('Navigation state from:', fromPage);
       if (fromPage.includes('/for-developers') || fromPage === '/for-developers' || fromPage.includes('developer')) {
@@ -43,7 +43,7 @@ const Contact = () => {
       // Fallback to checking document referrer if no state
       const referrer = document.referrer;
       console.log('Document referrer:', referrer);
-      
+
       if (referrer.includes('/for-developers') || referrer.includes('developer')) {
         setFormData(prev => ({ ...prev, role: 'developer' }));
       } else if (referrer.includes('/for-clients') || referrer.includes('client')) {
@@ -55,10 +55,10 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Get the final role value (either predefined or custom)
     const finalRole = formData.role === 'custom' ? formData.customRole : formData.role;
-    
+
     // Basic validation
     if (!formData.name || !formData.email || !finalRole || !formData.message) {
       toast({
@@ -70,8 +70,32 @@ const Contact = () => {
     }
 
     // Simulate form submission
-    console.log('Form submitted:', { ...formData, finalRole });
-    
+   //  console.log('Form submitted:', { ...formData, finalRole });
+
+    fetch('http://localhost:5000/api/contact', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    name: formData.name,
+    email: formData.email,
+    role: finalRole,
+    message: formData.message
+  }),
+})
+  .then(res => res.json())
+  .then(data => {
+    console.log('Success:', data);
+    toast({ title: 'Message Sent!', description: "We'll get back to you within 24 hours." });
+    setFormData({ name: '', email: '', role: '', customRole: '', message: '' });
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    toast({ title: 'Error', description: 'Something went wrong. Please try again.', variant: 'destructive' });
+  });
+
+
     toast({
       title: "Message Sent!",
       description: "We'll get back to you within 24 hours.",
@@ -106,13 +130,13 @@ const Contact = () => {
   const handleCalendlyClick = () => {
     // Basic Calendly implementation - opens in new window
     const calendlyUrl = 'https://calendly.com/your-calendly-link'; // Replace with actual Calendly link
-    
+
     // For now, we'll show a toast since we don't have a real Calendly link
     toast({
       title: "Calendly Integration",
       description: "This would open your Calendly booking page. Please add your actual Calendly link.",
     });
-    
+
     // Uncomment when you have a real Calendly link:
     // window.open(calendlyUrl, '_blank', 'width=800,height=600');
   };
@@ -121,14 +145,13 @@ const Contact = () => {
     <PageTransition>
       <div className="min-h-screen bg-white">
         <Header />
-        
+
         {/* Hero Section */}
         <section className="bg-gradient-to-b from-muted to-white py-16">
-          <div 
+          <div
             ref={heroRef}
-            className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center transition-all duration-1000 ${
-              heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}
+            className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center transition-all duration-1000 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}
           >
             <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">
               Let's Work Together.
@@ -144,11 +167,10 @@ const Contact = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-8">
               {/* Contact Form */}
-              <div 
+              <div
                 ref={formRef}
-                className={`transition-all duration-1000 delay-200 ${
-                  formVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
-                }`}
+                className={`transition-all duration-1000 delay-200 ${formVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
+                  }`}
               >
                 <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300">
                   <CardHeader>
@@ -179,7 +201,7 @@ const Contact = () => {
                           />
                         </div>
                       </div>
-                      
+
                       <div>
                         <Label htmlFor="role">I'm a *</Label>
                         <Select value={formData.role} onValueChange={handleRoleChange}>
@@ -193,7 +215,7 @@ const Contact = () => {
                             <SelectItem value="custom">Custom (type your role)</SelectItem>
                           </SelectContent>
                         </Select>
-                        
+
                         {/* Custom Role Input - shown when "Custom" is selected */}
                         {formData.role === 'custom' && (
                           <div className="mt-2">
@@ -207,7 +229,7 @@ const Contact = () => {
                           </div>
                         )}
                       </div>
-                      
+
                       <div>
                         <Label htmlFor="message">Message *</Label>
                         <Textarea
@@ -219,10 +241,10 @@ const Contact = () => {
                           className="transition-all duration-200 focus:scale-105"
                         />
                       </div>
-                      
-                      <Button 
-                        type="submit" 
-                        size="lg" 
+
+                      <Button
+                        type="submit"
+                        size="lg"
                         className="w-full bg-accent hover:bg-accent/90 text-white transform transition-all duration-200 hover:scale-105"
                       >
                         Send Message
@@ -245,17 +267,24 @@ const Contact = () => {
                       </div>
                     </div>
                     <p className="text-gray-600 mb-4">
-                      Prefer to talk? Schedule a 30-minute consultation call to discuss your requirements 
+                      Prefer to talk? Schedule a 30-minute consultation call to discuss your requirements
                       in detail.
                     </p>
-                    <Button 
+                    <Button
                       onClick={handleCalendlyClick}
-                      variant="outline" 
+                      variant="outline"
                       className="border-primary text-primary hover:bg-primary hover:text-white transition-all duration-200 hover:scale-105"
                     >
-                      <Calendar className="mr-2 h-4 w-4" />
-                      Book Calendly Call
-                      <ExternalLink className="ml-2 h-4 w-4" />
+                      <a
+                        href="https://calendly.com/hirecirkit"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center"
+                      >
+                        <Calendar className="mr-2 h-4 w-4" />
+                        Book Calendly Call
+                        <ExternalLink className="ml-2 h-4 w-4" />
+                      </a>
                     </Button>
                   </CardContent>
                 </Card>
@@ -270,7 +299,7 @@ const Contact = () => {
                       </div>
                     </div>
                     <p className="text-gray-600">
-                      Send us an email and we'll respond within 24 hours. Perfect for detailed inquiries 
+                      Send us an email and we'll respond within 24 hours. Perfect for detailed inquiries
                       and technical questions.
                     </p>
                   </CardContent>

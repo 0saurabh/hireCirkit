@@ -338,7 +338,7 @@ const About = () => {
               </Button>
             </Link>
             <Link to="/how-it-works">
-              <Button size="lg" variant="outline" className="group border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-xl">
+              <Button size="lg" className="group border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-xl">
                 <BookOpen className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
                 Learn How We Work
               </Button>

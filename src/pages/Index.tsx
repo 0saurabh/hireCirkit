@@ -447,8 +447,7 @@ const Index = () => {
               <Link to="/for-developers">
                 <Button 
                   size="lg" 
-                  variant="outline"
-                  className="group border-2 border-white text-white hover:bg-white hover:text-primary transition-all duration-500 hover:scale-110 backdrop-blur-sm px-8 py-4 text-lg"
+                className="group border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-xl"
                 >
                   👨‍💻 Join as Developer
                   <ArrowRight className="ml-2 w-5 h-5 transition-transform duration-300 group-hover:translate-x-2" />

@@ -1,14 +1,7 @@
-
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,75 +25,29 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            {/* For Clients Dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center space-x-1 text-gray-700 hover:text-primary transition-all duration-300 cursor-pointer relative group px-2 py-1 rounded-md hover:bg-primary/5">
-                <span className="font-medium">For Clients</span>
-                <ChevronDown className="h-4 w-4 group-hover:rotate-180 transition-transform duration-300" />
-                <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-primary to-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-white/95 backdrop-blur-md border shadow-xl rounded-lg animate-in slide-in-from-top-2 duration-200">
-                <DropdownMenuItem asChild>
-                  <Link to="/for-clients" className="w-full hover:bg-primary/5 transition-colors duration-200 cursor-pointer">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-2 h-2 rounded-full bg-primary"></div>
-                      <span>Overview</span>
-                    </div>
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/how-it-works" className="w-full hover:bg-primary/5 transition-colors duration-200 cursor-pointer">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-2 h-2 rounded-full bg-accent"></div>
-                      <span>How It Works</span>
-                    </div>
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/contact" state={{ from: '/for-clients' }} className="w-full hover:bg-primary/5 transition-colors duration-200 cursor-pointer">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                      <span>Get Started</span>
-                    </div>
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <Link 
+              to="/for-clients" 
+              className={`relative group px-2 py-1 rounded-md transition-all duration-300 font-medium ${
+                isActive('/for-clients') 
+                  ? 'text-primary bg-primary/10' 
+                  : 'text-gray-700 hover:text-primary hover:bg-primary/5'
+              }`}
+            >
+              For Clients
+              <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-primary to-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+            </Link>
 
-            {/* For Developers Dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center space-x-1 text-gray-700 hover:text-primary transition-all duration-300 cursor-pointer relative group px-2 py-1 rounded-md hover:bg-primary/5">
-                <span className="font-medium">For Developers</span>
-                <ChevronDown className="h-4 w-4 group-hover:rotate-180 transition-transform duration-300" />
-                <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-accent to-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-white/95 backdrop-blur-md border shadow-xl rounded-lg animate-in slide-in-from-top-2 duration-200">
-                <DropdownMenuItem asChild>
-                  <Link to="/for-developers" className="w-full hover:bg-accent/5 transition-colors duration-200 cursor-pointer">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-2 h-2 rounded-full bg-accent"></div>
-                      <span>Overview</span>
-                    </div>
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/how-it-works" className="w-full hover:bg-accent/5 transition-colors duration-200 cursor-pointer">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-2 h-2 rounded-full bg-primary"></div>
-                      <span>How It Works</span>
-                    </div>
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/contact" state={{ from: '/for-developers' }} className="w-full hover:bg-accent/5 transition-colors duration-200 cursor-pointer">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-                      <span>Join Now</span>
-                    </div>
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <Link 
+              to="/for-developers" 
+              className={`relative group px-2 py-1 rounded-md transition-all duration-300 font-medium ${
+                isActive('/for-developers') 
+                  ? 'text-primary bg-primary/10' 
+                  : 'text-gray-700 hover:text-primary hover:bg-primary/5'
+              }`}
+            >
+              For Developers
+              <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-accent to-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+            </Link>
 
             <Link 
               to="/how-it-works" 

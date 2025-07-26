@@ -105,63 +105,75 @@ const ForClients = () => {
         </div>
       </section>
 
-      {/* Services Offered */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-primary mb-4">Services Offered</h2>
-            <p className="text-gray-600">Flexible hiring options to match your project needs and budget.</p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardHeader className="text-center">
-                  <div className="flex justify-center mb-4">
-                    {service.icon}
-                  </div>
-                  <CardTitle className="text-primary">{service.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600 mb-4">{service.description}</p>
-                  <ul className="space-y-2">
-                    {service.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center space-x-2">
-                        <Check className="h-4 w-4 text-accent" />
-                        <span className="text-sm text-gray-700">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+     {/* Services Offered */}
+<section className="py-16 bg-white">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="text-center mb-12">
+      <h2 className="text-3xl font-bold text-primary mb-4">Services Offered</h2>
+      <p className="text-gray-600">Flexible hiring options to match your project needs and budget.</p>
+    </div>
 
-      {/* Our Process */}
-      <section className="py-16 bg-muted">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-primary mb-4">Our Process (For Clients)</h2>
-            <p className="text-gray-600">A streamlined approach to finding your perfect development partner.</p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {process.map((step, index) => (
-              <Card key={index} className="text-center">
-                <CardContent className="p-6">
-                  <div className="w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center font-bold text-lg mx-auto mb-4">
-                    {step.step}
-                  </div>
-                  <h3 className="text-lg font-semibold text-primary mb-3">{step.title}</h3>
-                  <p className="text-gray-600 text-sm">{step.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+    <div className="grid md:grid-cols-3 gap-8">
+      {services.map((service, index) => (
+        <Card
+          key={index}
+          className="relative group overflow-hidden rounded-xl bg-white text-center transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl"
+        >
+          {/* Radium border effect */}
+          <div className="absolute inset-0 rounded-xl border border-transparent group-hover:border-accent transition-all duration-500 before:content-[''] before:absolute before:inset-0 before:rounded-xl before:border-[2px] before:border-accent before:animate-pulse before:opacity-20"></div>
+
+          <CardHeader className="relative z-10 text-center">
+            <div className="flex justify-center mb-4">{service.icon}</div>
+            <CardTitle className="text-primary">{service.title}</CardTitle>
+          </CardHeader>
+
+          <CardContent className="relative z-10">
+            <p className="text-gray-600 mb-4">{service.description}</p>
+            <ul className="space-y-2">
+              {service.features.map((feature, featureIndex) => (
+                <li key={featureIndex} className="flex items-center space-x-2">
+                  <Check className="h-4 w-4 text-accent" />
+                  <span className="text-sm text-gray-700">{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>
+
+{/* Our Process */}
+<section className="py-16 bg-muted">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="text-center mb-12">
+      <h2 className="text-3xl font-bold text-primary mb-4">Our Process (For Clients)</h2>
+      <p className="text-gray-600">A streamlined approach to finding your perfect development partner.</p>
+    </div>
+
+    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {process.map((step, index) => (
+        <Card
+          key={index}
+          className="relative group overflow-hidden text-center transition-transform transform hover:-translate-y-2 hover:shadow-xl duration-300 bg-white rounded-xl"
+        >
+          {/* Glowing Radium Effect */}
+          <div className="absolute inset-0 rounded-xl border border-transparent group-hover:border-accent transition-all duration-500 before:content-[''] before:absolute before:inset-0 before:rounded-xl before:border-[2px] before:border-accent before:animate-pulse before:opacity-20"></div>
+
+          <CardContent className="p-6 relative z-10">
+            <div className="w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center font-bold text-lg mx-auto mb-4 transition-transform duration-300 group-hover:scale-110">
+              {step.step}
+            </div>
+            <h3 className="text-lg font-semibold text-primary mb-3">{step.title}</h3>
+            <p className="text-gray-600 text-sm">{step.description}</p>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>
+
 
       {/* CTA Section */}
       <section className="py-16 bg-primary text-white">
@@ -178,7 +190,7 @@ const ForClients = () => {
               </Button>
             </Link>
             <Link to="/contact">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
+              <Button size="lg" variant="outline" className="border-white text-black hover:bg-white hover:text-primary">
                 📞 Schedule Discovery Call
               </Button>
             </Link>
